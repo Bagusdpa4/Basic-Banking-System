@@ -14,9 +14,9 @@ class BankAccount {
     updateSaldo() {
       return new Promise((resolve) => {
         const saldoElement = document.getElementById("saldo");
-        saldoElement.innerText = `Saldo Anda: ${this.formatRupiah(this.saldo)}`;
+        saldoElement.innerText = `Saldo Rekening Anda: ${this.formatRupiah(this.saldo)}`;
         setTimeout(() => {
-          resolve(`Saldo Anda : ${this.formatRupiah(this.saldo)}`);
+          resolve(`Saldo Rekening Anda : ${this.formatRupiah(this.saldo)}`);
         }, 2000);
       });
     }
@@ -76,7 +76,7 @@ class BankAccount {
     try {
       account.updateSaldo();
   
-      window.alert("Selamat Datang....!!!")
+      window.alert("Selamat Datang di Layanan Perbankan Sederhana!")
       document.getElementById("depositBtn").addEventListener("click", () => {
         account
           .deposit()
