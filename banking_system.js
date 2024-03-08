@@ -12,7 +12,7 @@ class BankAccount {
     }
   
     updateSaldo() {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const saldoElement = document.getElementById("saldo");
         saldoElement.innerText = `Saldo Anda: ${this.formatRupiah(this.saldo)}`;
         setTimeout(() => {
@@ -25,14 +25,15 @@ class BankAccount {
       return new Promise((resolve, reject) => {
         window.alert("Tunggu Beberapa Saat...\nPermintaan Anda Sedang Diproses...")
         setTimeout(() => {
-        let amount = prompt("Masukkan Jumlah Saldo Yang Ingin Ditambahkan:");
+        let amount = prompt("Masukkan Jumlah Deposit Saldo :");
         amount = parseInt(amount);
+
         if (!isNaN(amount) && amount > 0) {
           this.saldo += amount;
           window.alert("Tunggu Sebentar...")
           setTimeout(() => {
           this.updateSaldo();
-          resolve(window.alert(`Selamat! Anda Telah Berhasil Melakukan Deposit Saldo Sebesar ${this.formatRupiah(amount)}.`));
+          resolve(window.alert(`Anda Telah Berhasil Melakukan Deposit Saldo Sebesar ${this.formatRupiah(amount)}.`));
           }, 3000);
         } else if (isNaN(amount)) {
           reject(window.alert("Masukkan Jumlah Saldo Berupa Nominal Angka!"));
@@ -45,13 +46,18 @@ class BankAccount {
   
     withdraw() {
       return new Promise((resolve, reject) => {
-        let amount = prompt("Masukkan Jumlah Saldo Yang Ingin Ditarik:");
+        window.alert("Tunggu Beberapa Saat...\nPermintaan Anda Sedang Diproses...")
+        setTimeout(() => {
+        let amount = prompt("Masukkan Jumlah Withdraw Saldo :");
         amount = parseInt(amount);
   
         if (!isNaN(amount) && amount > 0 && amount <= this.saldo) {
           this.saldo -= amount;
+          window.alert("Tunggu Sebentar...")
+          setTimeout(() => {
           this.updateSaldo();
-          resolve(window.alert(`Selamat! Anda Telah Berhasil Melakukan Penarikan Saldo Sebesar ${this.formatRupiah(amount)}`));
+          resolve(window.alert(`Anda Telah Berhasil Melakukan Penarikan Saldo Sebesar ${this.formatRupiah(amount)}`));
+        }, 3000);
         } else if (isNaN(amount)) {
           reject(window.alert("Masukkan Jumlah Saldo Berupa Nominal Angka!"));
         } else if (amount <= 0) {
@@ -59,6 +65,7 @@ class BankAccount {
         } else {
           reject(window.alert("Saldo Yang Diinput Tidak Bisa Melebihi Sisa Saldo Anda!"));
         }
+    }, 2000);
       });
     }
   }
